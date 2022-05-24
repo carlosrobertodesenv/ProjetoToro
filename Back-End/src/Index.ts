@@ -1,11 +1,16 @@
 import express, {Request, Response, NextFunction} from 'express';
+import usersRoute from './routes/users.route';
 
-const app = express()
+const app = express();
 
-app.get('/status', (req: Request, res: Response, next: NextFunction) =>{
-    res.status(200).send({foo: 'Agora eu mudei'})
-});
+//Configuaçãoes da Aplicação
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}))
+//Configurações de Rota
+app.use(usersRoute);
 
+//Inicia;ização do Servidor
 app.listen(9090,() =>{
-    console.log('Executando na porta: 9090')
+    console.log('A Aplicação esta rodando na porta: 9090');
 });
+
